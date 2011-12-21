@@ -1,0 +1,115 @@
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{etoolbox}
+%mathspec/fontspec
+\usepackage{mathspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+
+\usepackage[bookmarks,bookmarksnumbered]{hyperref}
+
+\makeatletter       % changes [1] to 1. in bibliography
+\renewcommand{\@biblabel}[1]{#1.}
+\makeatother
+
+\usepackage{appendix}
+\usepackage{graphicx}
+\usepackage{natbib}
+
+
+% FONT
+\setmainfont[Mapping=tex-text,Numbers={Lining}]{Linux Libertine O}
+\setmathfont(Latin)[Numbers={Lowercase}]{Linux Libertine O}
+\setmathfont(Digits)[Scale=MatchLowercase]{Linux Libertine O}
+
+\usepackage{unicode-math}
+\setmainfont[Mapping=tex-text,Numbers={Lining}]{Linux Libertine O} 
+\setmathfont{XITS Math}
+
+\setmathfont[range={\mathup}]{Linux Libertine O} 
+\setmathfont[range={\mathit}]{Linux Libertine O Italic} 
+\setmathfont[range={\rm}]{Linux Libertine O} 
+\setmathfont[range={\mathrm}]{Linux Libertine O} 
+
+
+
+% \renewcommand{\rmdefault}{fxl}
+\renewcommand{\sfdefault}{txss}
+
+
+%%%%%%%%% from here yuasa setting %%%%%%%%%%%%%%%%%%%%%
+% a4paper paperheight = 845.04684pt
+%\setlength{\topmargin}{-.5in}
+%% textheight = paperheight - 2in - \topmargin - \headheight - \headsep
+%%              - \footskip = approx. 641pt
+%\setlength{\textheight}{1.05\paperheight}
+%\addtolength{\textheight}{-2.2in}
+%%\addtolength{\textheight}{-\topmargin}
+%%\addtolength{\textheight}{-\headheight}
+%%\addtolength{\textheight}{-\headsep}
+%%\addtolength{\textheight}{-\footskip}
+
+%% a4paper paperwidth = 597.50787pt
+%%\setlength{\marginparsep}{0pt}
+%%\setlength{\marginparwidth}{0pt}
+%% textwidth = paperwidth - 2in - \oddsidemargin = approx. 432pt
+%\setlength{\textwidth}{\paperwidth}
+%\addtolength{\textwidth}{-1.8in}
+%%\addtolength{\textwidth}{-\oddsidemargin}
+
+%% add 20pt to sidemargin
+%%   oddside: 1in+20pt+20pt | \textwidth | 1in-20pt
+%%   evenside: 1in-20pt | \textwidth | 1in+20pt+20pt
+%\setlength{\oddsidemargin}{0pt}
+%\setlength{\evensidemargin}{0pt}
+
+%%%%%%%%% to here yuasa setting %%%%%%%%%%%%%%%%
+
+%%%%%%%%% from here margin setting %%%%%%%%%%%%%%%%
+%for dron
+%\setlength{\topmargin}{0pt}
+%\setlength{\marginparsep}{0pt}
+%\setlength{\marginparwidth}{0pt}
+%\setlength{\oddsidemargin}{20pt}
+%\setlength{\evensidemargin}{0pt}
+%
+%\setlength{\textwidth}{\paperwidth}
+%\addtolength{\textwidth}{-2in}
+%\addtolength{\textwidth}{-\oddsidemargin}
+%
+%\addtolength{\oddsidemargin}{0pt}
+%\addtolength{\evensidemargin}{-23pt}
+%\setlength{\topmargin}{-12mm}
+%\setlength{\textheight}{25.3cm}
+%\setlength{\textwidth}{16.3cm}
+%%%%%%%%% till here margin setting %%%%%%%%%%%%%%%%
+
+%%% Linestrech
+%for user guide
+\renewcommand{\baselinestretch} {1.1}
+%for dron
+%\renewcommand{\baselinestretch} {1.1}
+
+\setlength\bibsep{2pt}
+\renewcommand{\bibnumfmt}[1]{(#1)}
+
+
+%%% Table of Contents
+\usepackage{tocloft}
+\setlength\cftparskip{-0.7pt}
+\setlength\cftbeforesecskip{1.5pt}
+\setlength\cftaftertoctitleskip{2pt}
+
+\addtolength{\oddsidemargin}{-.875in}
+	\addtolength{\evensidemargin}{-.875in}
+	\addtolength{\textwidth}{1.75in}
+
+	\addtolength{\topmargin}{-.875in}
+	\addtolength{\textheight}{1.75in}
+
+%% for quotes
+%\fontspec[Mapping=tex-text]{Linux Libertine O}
+%\fontspec[Ligatures=TeX]{Linux Libertine O}
