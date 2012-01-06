@@ -113,3 +113,38 @@
 %% for quotes
 %\fontspec[Mapping=tex-text]{Linux Libertine O}
 %\fontspec[Ligatures=TeX]{Linux Libertine O}
+
+%%%%%%%%% color %%%%%%%%%
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\green}{\textcolor{green}}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\apricot}{\textcolor[rgb]{1,0,0.5}}
+\newcommand{\strawberry}{\textcolor[rgb]{1,0,0.5}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%% for source code listing %%%%%%%%%
+\usepackage{listings}
+\usepackage{color}
+
+\lstset{%
+ language={XML},
+ backgroundcolor={\color[gray]{.97}},%
+ basicstyle={\small\ttfamily},%
+ identifierstyle={\small\ttfamily},%
+ commentstyle={\small\ttfamily\itshape},%
+ keywordstyle={\small\bfseries\ttfamily},%
+ ndkeywordstyle={\small},%
+ stringstyle={\small\ttfamily\apricot},
+ frame={tb},
+ breaklines=true,
+% columns=[l]{fullflexible},%
+ numbers=left,%
+ xrightmargin=5pt,%
+ xleftmargin=5pt,%
+% numberstyle={\scriptsize},%
+% stepnumber=1,
+ numbersep=5pt,%
+ lineskip=-0.5pt%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%

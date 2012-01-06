@@ -1,4 +1,4 @@
- \documentclass[a4paper,10pt]{article}
+\documentclass[a4paper,10pt]{article}
 
 \input{style/preamble}
 
@@ -11,14 +11,15 @@ SpaceWire RMAP GUI}\\
 Takayuki Yuasa
 }\\
 {\small Japan Aerospace Exploration Agency, Institute of Space and Astronautical Science}\\
+{\small yuasa \_at\_mark\_ astro.isas.jaxa.jp}\\
 }
 
-\date{December, 2011}
+\date{January 06, 2012}
 
-\newcommand{\red}{\textcolor{red}}
-\newcommand{\green}{\textcolor{green}}
-\newcommand{\blue}{\textcolor{blue}}
-\newcommand{\apricot}{\textcolor[rgb]{1,0,0.5}}
+%\newcommand{\red}{\textcolor{red}}
+%\newcommand{\green}{\textcolor{green}}
+%\newcommand{\blue}{\textcolor{blue}}
+%\newcommand{\apricot}{\textcolor[rgb]{1,0,0.5}}
 
 \usepackage{listings}
 \usepackage{color}
@@ -58,17 +59,17 @@ In addition to these, RMAP packet construction/interpretation is provided. The s
 
 Several types of information used in SpaceWire RMAP GUI, such as RMAP target node information, memory object on an RMAP target node, can be defined using XML-like file. By loading definition files, users do not need to input logical address, target SpaceWire address, memory address, length, or other properties every RMAP access.
 
+\subsection{Screenshot}
 As shown in Figure \ref{figure:tab_rmap}, the main window consists of three tabs which displays SpaceWire, RMAP, and RMAP packet utility functionalities.
 \begin{figure}[htb]
-%\rotatebox{90}{\begin{minipage}{\textheight}
-\includegraphics[width=8cm]{figures/SpaceWireRMAPGUI/Screenshot_Tab_SpaceWire.png}
-\includegraphics[width=8cm]{figures/SpaceWireRMAPGUI/Screenshot_Tab_RMAP.png}
-\includegraphics[width=8cm]{figures/SpaceWireRMAPGUI/Screenshot_Tab_RMAPPacketUtility.png}
-\caption{Screenshots of each function of SpaceWire RMAP GUI.}
+\begin{center}
+\includegraphics[width=15cm]{figures/SpaceWireRMAPGUI/Screenshot_all.png}
+\caption{Screenshot of SpaceWire RMAP GUI.}
 \label{figure:tab_rmap}
-%\end{minipage}}
+\end{center}
 \end{figure}
 
+\subsection{Dependence}
 SpaceWire RMAP GUI uses libraries listed below:
 \begin{itemize}
   \setlength{\parskip}{0cm}
@@ -80,9 +81,14 @@ SpaceWire RMAP GUI uses libraries listed below:
 \end{itemize}
 These libraries are statically linked to the software, and therefore, users are not required to install individual libraries separately.
 
-Note that the software is distributed for free assuming that this is useful for some users without any warranty or official support, and developers are not responsible for any damages caused by this software.
+\subsection{Download, install, and updates}
+SpaceWire RMAP GUI can be downloaded from the Open-source SpaceWire project$^\mathrm{\ref{url:supportpage}}$.
+Note that the software is distributed for free assuming that this is useful for some users without any warranty.
+Unzip the archive, and move the extracted "SpaceWire RMAP GUI" folder to the "Applications" folder.
+If you use the software frequently, register it to the Dock by dragging-and-dropping the icon to the Dock. To uninstall the software, move the "SpaceWire RMAP GUI" folder to the Trash.
 
-\clearpage
+Hopefully, SpaceWire RMAP GUI will be updated based on feedbacks from users, and new versions will be available at the same web site. At this moment, there is no auto update function in the software, and therefore, please check the web site for updates occasionally.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -114,20 +120,88 @@ Documents listed below can be a nice reference when better understanding SpaceWi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Overall structure of SpaceWire RMAP GUI}
+\section{Structure of SpaceWire RMAP GUI}
+
+\subsection{The main window}
 SpaceWire RMAP GUI displays single main window when start up.
 The window contains three tabs (or panels), and each tab collects text fields and buttons which are necessary for SpaceWire, RMAP, and RMAP Packet Utility functions.
 
-\subsection{The main window}
 The main window is divided into four sections; the SpaceWire-to-GigabitEther setting section (top left; see Section \ref{section:setting_section}), the configuration file section (top right; see Section \ref{section:configuration_section}), the main tab (middle), and the log message section (bottom). When the main window is closed, SpaceWire RMAP GUI quits. If SpaceWire-to-GigabitEther is connected via TCP/IP when quitting, SpaceWire RMAP GUI tries to close the connection. Settings (values contained in each input fields) are saved to the preference file, and loaded again at the start up.
 
 \subsection{SpaceWire tab}
-The SpaceWire tab allows users to handle raw SpaceWire packets.
+Figure \ref{figure:SpaceWireTab} shows the SpaceWire tab.
+Receive timeout can be manually set.
+The tab allows users to send and receive raw SpaceWire packets.
 Periodic or ordered timecode emission is managed from this tab as well.
 
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=8cm]{figures/SpaceWireRMAPGUI/Screenshot_SpaceWireTab.png}
+\caption{Screenshot of the SpaceWire tab.}
+\label{figure:SpaceWireTab}
+\end{center}
+\end{figure}
+
 \subsection{RMAP tab}
+The RMAP tab provides RMAP read/write initiator functions as shown in Figure \ref{figure:RMAPTab}.
+RMAP target node information can be set manually or semi-automatically using XML-like configuration files.
+
 
 \subsection{RMAP Packet Utility tab}
+The RMAP Packet Utility tab, shown in Figure \ref{figure:RMAPPacketUtilityTab}, interprets and constructs RMAP packets.
+A correct header or data CRC value is displayed when interpreting a packet with an invalid CRC.
+
+\begin{figure}[htb]
+\begin{center}
+\begin{minipage}{0.45\hsize}
+\begin{center}
+\includegraphics[width=8cm]{figures/SpaceWireRMAPGUI/Screenshot_RMAPTab.png}
+\caption{Screenshot of the RMAP tab.}
+\label{figure:SpaceWireTab}
+\end{center}
+\end{minipage}
+\hspace{0.05\hsize}
+\begin{minipage}{0.45\hsize}
+\begin{center}
+\includegraphics[width=8cm]{figures/SpaceWireRMAPGUI/Screenshot_RMAPPacketUtilityTab.png}
+\caption{Screenshot of the RMAP Packet Utility tab.}
+\label{figure:RMAPPacketUtilityTab}
+\end{center}
+\end{minipage}
+\end{center}
+\end{figure}
+
+
+\subsection{Log message window}
+The software displays log messages when a user executes each function.
+Log messages are tagged with real time, and colored when there happens any error or unexpected event.
+Users can open the log window, as shown in Figure \ref{figure:LogWindow} by clicking the "Show log" button in the bottom of the main window.
+
+\subsection{Registered RMAP Target Nodes window}
+When loading a configuration file, information of RMAP Target Nodes such as target logical address, key, and so on, are registered, and available with identifiers, or name, of the target.
+The Registered RMAP Target Nodes window lists registered RMAP Target Nodes and their properties including defined those of memory objects.
+Figure \ref{figure:RegisteredRMAPTargetNodesWhenLoadingConfigurationFile} shows an example of the window when loading a sample XML file for the SpaceWire-to-GigabitEther configuration port.
+
+\begin{figure}[htb]
+\begin{center}
+\begin{minipage}{0.45\hsize}
+\begin{center}
+\includegraphics[width=8cm]{figures/SpaceWireRMAPGUI/Screenshot_LogWhenLoadingConfigurationFile.png}
+\caption{Screenshot of the log window.}
+\label{figure:LogWindow}
+\end{center}
+\end{minipage}
+\hspace{0.05\hsize}
+\begin{minipage}{0.45\hsize}
+\begin{center}
+\includegraphics[width=8cm]{figures/SpaceWireRMAPGUI/Screenshot_RegisteredRMAPTargetNodesWhenLoadingConfigurationFile.png}
+\caption{Screenshot of the Registered RMAP Target Nodes window.}
+\label{figure:RegisteredRMAPTargetNodesWhenLoadingConfigurationFile}
+\end{center}
+\end{minipage}
+\end{center}
+\end{figure}
+
 
 \subsection{Typical procedure}
 When analyzing/creating RMAP packets in the RMAP Packet Utility tab, no connection to SpaceWire-to-GigabitEther is necessary.
@@ -142,7 +216,15 @@ When sending/receiving SpaceWire packets or initiating RMAP read/write, follow t
 or initiate RMAP read/write (from the RMAP tab).\\
 \end{enumerate}
 
+\subsection{Notation of byte sequence}\label{section:numberNotation}
+In SpaceWire RMAP GUI, users are required to input values (e.g. RMAP memory address and transaction ID) and 
+byte sequence (e.g. raw SpaceWire packet and SpaceWire address).
 
+The software interprets a value as hex when a leading "0x" is attached to numbers (and a-f).
+Multi-byte numbers can be expressed as for example "0x1234abcd", and this example is interpreted as a byte sequence "0x12 0x34 0xab 0xcd".
+When converting a multi-byte number with an odd number of digits e.g. "0x123" to a byte sequence, one leading 0 is padded, resulting "0x0123" == "0x01 0x23".
+
+Numbers with no "0x" prefix are basically treated as decimal, but when the "All hex" option which is available in a part of input fields is enabled, "0x" is automatically put before the numbers. For example, "0x45 12 ab 0x88 f0" is converted to a byte sequence "0x45 0x12 0xab 0x88" when the "All hex" option is enabled.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -161,9 +243,7 @@ Users can set an IP address (or URL) and utilized port number of SpaceWire-to-Gi
 \end{center}
 \end{figure}
 
-Note: Port number selects SpaceWire port of the internal SpaceWire router (when available on your SpaceWire-to-GigabitEther device). The default value 10030 may correspond to port 6 in Shimafuji's SpaceWire-to-GigabitEther, and port 1 in open-source SpaceWire-to-GigabitEther (which does not implement an internal router, and the port is directly connected to the physical connector on the board).
-
-Note: As written on the window, the IP address and TCP port number will be saved to an invisible configuration file "~/.guispacewirermap". Other settings such as default RMAP header information, will be saved to a preference file which is located in the OS X default folder (~/Library/Preferences/).
+Note: Port number selects SpaceWire port of the internal SpaceWire router (when available on your SpaceWire-to-GigabitEther device). The default value 10030 may correspond to port 6 in Shimafuji's SpaceWire-to-GigabitEther, and port 1 in open-source SpaceWire-to-GigabitEther (which does not implement an internal router, and the port is directly connected to the physical connector on the board). For details, please refer to user guide of your SpaceWire-to-GigabitEther.
 
 \subsection{RMAP Target Node definition using XML-like files}\label{section:configuration_section}
 In SpaceWire RMAP GUI, an XML-like text file or files is/are used to load RMAP target node information such as a logical address, target SpaceWire address and reply address, and memory object (or register) information on the RMAP target node such as memory address, access length, access modes. This allows users to deal  with a large network which consists of large number of RMAP target nodes by avoiding manual reconfiguration of many input fields in the RMAP tab in every RMAP access.
@@ -215,6 +295,7 @@ By loading configuration files from the "Configuration" section in the main wind
 \begin{figure}[htb]
 \begin{center}
 \includegraphics[height=2.5cm]{figures/SpaceWireRMAPGUI/Section_LoadConfigurationFile.png}
+\vspace{-2mm}
 \caption{Configuration file section.}
 \label{figure:section_ConfigurationFiles}
 \end{center}
@@ -230,42 +311,247 @@ The above example results with RMAP Target Nodes named "SpaceWireToGigabitEther\
 \end{center}
 \end{figure}
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{SpaceWire}
+\section{SpaceWire functions}
 \subsection{Sending packets}
+To send packets, input byte sequence in the Raw Packet Send section on the SpaceWire window.
+Figure \ref{figure:SpaceWireSection_RawPacketSend_withData} shows an example of data input.
+See \S\ref{section:numberNotation} for details of number input options. Input byte sequence is sent with an end-of-packet marker, EOP or EEP, selected via "Send with EOP" or "Send with EEP".
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=10cm]{figures/SpaceWireRMAPGUI/SpaceWireSection_RawPacketSend_withData.png}
+\vspace{-2mm}
+\caption{An example of sending a packet.}
+\label{figure:SpaceWireSection_RawPacketSend_withData}
+\end{center}
+\end{figure}
+
+
 \subsection{Receiving packets}
+To receive a packet as a raw SpaceWire packet, click "Receive (1 packet)". When a packet is received within a timeout duration which is set via the "Receive timeout" field (in units of milli second), its byte sequence is displayed in the text field.
+
+Multiple packets can be continuously received, by clicking "Receive (continuous)".
+When many packets are received in a short time, only a part of them is displayed. 
+
+Note: To receive packets in the SpaceWire tab, the RMAPEngine used in the RMAP tab should be stopped because RMAPEngine tries to receive all incoming packets in background disabling packet receiving of the SpaceWire tab (this is caused by the two tabs shares one physical SpaceWire connection).
+
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=10cm]{figures/SpaceWireRMAPGUI/SpaceWireSection_RawPacketReceiveSection.png}
+\vspace{-2mm}
+\caption{The Raw Packet Receive window.}
+\label{figure:SpaceWireSection_RawPacketReceiveSection}
+\end{center}
+\end{figure}
+
+
+
 \subsection{Emitting timecode}
-\subsection{Errors and timeout}
+Timecode character can be emitted by clicking "Emit one-shot" or "Emit periodically".
+One-shot emission uses timecode value in the Timecode value field.
+During periodic timecode emission, timecode value is automatically incremented, and emitted at a rate specified in the Timecode frequency field in units of Hz. Too low or too high timecode frequency results an error message to prevent from unexpected response of SpaceWire-to-GigabitEther and connected SpaceWire nodes. Current timecode value, and periodic emission status is displayed in the left part of the timecode section.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=10cm]{figures/SpaceWireRMAPGUI/SpaceWireSection_TimecodeSection.png}
+\vspace{-2mm}
+\caption{Timecode section in the SpaceWire tab.}
+\label{figure:SpaceWireSection_TimecodeSection}
+\end{center}
+\end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{RMAP}
-\subsection{Performing Write}
-\subsection{Performing Read}
+\section{RMAP functions}
+To perform RMAP read/write, various types of information must be provided; information of an RMAP target node (i.e. destination of an RMAP command packet), memory information (i.e. address and length), instruction (i.e. read or write with verify/no verify and/or reply/no reply), and information regarding a transaction (transaction ID mode and timeout duration).
+
+Figure \ref{figure:RMAPSection_InitiatorAndTargetInformation} shows  the Initiator and Target information section, whose content can be manually input, or registered RMAP Target Node information can be loaded from the Use registered target node pull-down menu. Note that the target node address field accepts inputs like "0x03 0x0f" and "0x030f" as well. When an input reply address has a length which is not a multiple of 4, leading 0s are automatically padded.
+
+\begin{figure}[htb]
+\begin{center}
+\begin{minipage}[t]{0.45\hsize}
+\begin{center}
+\includegraphics[width=8.3cm]{figures/SpaceWireRMAPGUI/RMAPSection_InitiatorAndTargetInformation.png}
+\vspace{-2mm}
+\caption{The Initiator and Target information section. Target SpaceWire address and Reply address are interpreted as "0x03 0x0f" and "0x00 0x00 0x02 0x04" in this example.}
+\label{figure:RMAPSection_InitiatorAndTargetInformation}
+\end{center}
+\end{minipage}
+\hspace{0.05\hsize}
+\begin{minipage}[t]{0.45\hsize}
+\begin{center}
+\includegraphics[width=8.3cm]{figures/SpaceWireRMAPGUI/RMAPSection_MemoryTransactionIDTimeoutInformation.png}
+\vspace{-2mm}
+\caption{The Memory, the transaction ID, and the timeout sections.}
+\label{figure:RMAPSection_MemoryTransactionIDTimeoutInformation}
+\end{center}
+\end{minipage}
+\end{center}
+\end{figure}
+
+
+Refer specifications or user manuals of RMAP target devices for memory addresses accessible via RMAP.
+Length is only necessary for read transactions, and is automatically calculated for write transactions.
+
+Transaction management is done by the internal RMAP Engine based on transaction ID.
+Although automatic transaction ID assignment, which is default of SpaceWire RMAP GUI, will be acceptable for many use cases, users can also specify a transaction ID manually to force the RMAP Engine to put the transaction ID to an RMAP command packet.
+When using a manually selected transaction ID, please carefully check if an emitted RMAP command packet has an expected transaction ID (e.g. by checking "Log packet dump").
+
+\subsection{Performing Write and Read}
+After setting the initiator and the target information and the memory information, users can perform RMAP write and read very easily. Figure \ref{figure:RMAPSection_Write} shows the write data section with an example write data. Clicking "RMAP Write", an RMAP Write command packet will be sent to a designated target node. In RMAP Write, the data length is automatically calculated from the input data, and the length field is ignored. Whether a user request verification on data (i.e. CRC calculation) and/or a reply for the command packet can be selected from the Options field. When a reply is not received within a specified timeout duration although it (a reply) is requested, an error message will be reported in the log window. Users can input multi-byte data like 0xabcdef1234, and this is treated as an array of 0xab 0xcd 0xef 0x12 0x34 (see \S\ref{section:numberNotation}).
+
+In RMAP Read, read length should be specified in the length field (in the Memory information section above). By clicking "RMAP Read", an RMAP Read command packet is sent to a target node. When a reply packet is received within a timeout duration, read data will be displayed in the RMAP Read section (byte-to-byte) as shown in Figure \ref{figure:RMAPSection_Read}. Timeout is logged as an error message.
+
+\begin{figure}[htb]
+\begin{center}
+\begin{minipage}[t]{0.45\hsize}
+\begin{center}
+\includegraphics[width=7cm]{figures/SpaceWireRMAPGUI/RMAPSection_Write.png}
+\vspace{-2mm}
+\caption{The RMAP Write section with write data.}
+\label{figure:RMAPSection_Write}
+\end{center}
+\end{minipage}
+\hspace{0.05\hsize}
+\begin{minipage}[t]{0.45\hsize}
+\begin{center}
+\includegraphics[width=7cm]{figures/SpaceWireRMAPGUI/RMAPSection_Read.png}
+\vspace{-2mm}
+\caption{The RMAP Read section with read data.}
+\label{figure:RMAPSection_Read}
+\end{center}
+\end{minipage}
+\end{center}
+\end{figure}
+
+
 \subsection{Errors and timeout}
+When an RMAP reply packet with a status other than "Command Successfully Executed (0x00)", an error message is reported in the log window. Timeout is also reported as an error with a message shown in Figure \ref{figure:RMAPSection_ReadTimeout}. 
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=8cm]{figures/SpaceWireRMAPGUI/RMAPSection_ReadTimeout.png}
+\vspace{-2mm}
+\caption{Timeout message reported in the log window.}
+\label{figure:RMAPSection_ReadTimeout}
+\end{center}
+\end{figure}
+
+
 \subsection{Use defined RMAP Target Nodes and memory objects}
+After loading an XML-like configuration file (\S\ref{section:configuration_section}), users can use registered information of RMAP Target Nodes such as target logical address, reply address, memory address, data length, and so on.
+Select a target node and its memory object from the "Use registered target node" and the "Use registered" pull-down menus, respectively. Registered information will be updated to corresponding fields.
+
+To clear registered RMAP Target Node information, click "Clear nodes" in the Configuration section. Details of registered RMAP Target Nodes (text dump) are available from the sub window (click "Show registered RMAP Target Nodes").
+
+\subsection{Logging dump of an RMAP packet}
+By checking "Log packet dump" beneath the RMAP Read button, all the sent and received RMAP packets are logged so as to allow off-line analyses of the packets. Figure \ref{figure:RMAPSection_LogRMAPPacketDump} shows an example of logging a transaction, i.e. command and reply packets. Since SpaceWire RMAP GUI has an integrated RMAP packet analysis function in the RMAP Packet Utility tab, users can easily analyze packets by copying and pasting byte sequence to the tab, and then clicking "Interpret as an RMAP packet".
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=8cm]{figures/SpaceWireRMAPGUI/RMAPSection_LogRMAPPacketDump.png}
+\vspace{-2mm}
+\caption{Logged RMAP packet dump.}
+\label{figure:RMAPSection_LogRMAPPacketDump}
+\end{center}
+\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{RMAP Packet Utility}
+\section{RMAP Packet Utility functions}
+SpaceWire RMAP GUI provides capabilities of inspecting and constructing RMAP packets.
+The RMAP Packet Utility tab is an interface to these functionalities.
+
 \subsection{Creating RMAP packets}
+When creating an RMAP packet, input properties of the packet, and then click "Generate packet".
+Resulting packet byte sequence will be shown in the right text field.
+Figure \ref{figure:RMAPPacketUtilitySection_GenerateInterpret} presents a result of generation of a packet shown in the RMAP standard document ("RMAP non-verified incrementing write-with-reply command - without SpaceWire addresses"; for see A.4 of the document).
+By checking "Log dump packet", details of the generated packet is added as a log message as Figure \ref{figure:RMAPPacketUtilitySection_Log_Generate} shows.
+
 \subsection{Interpreting RMAP packets}
-\subsection{Errors}
-\subsubsection{CRC error}
+Input byte sequence to the right text field, and then click "Interpret packet". Header information and data will be set to text fields in the left column. 
+Like the generation function, detailed packet interpretation log can be displayed by checking "Log packet dump" next to the "Interpret packet" button.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=10cm]{figures/SpaceWireRMAPGUI/RMAPPacketUtilitySection_GenerateInterpret.png}
+\vspace{-2mm}
+\caption{An example of RMAP packet generation/interpretation.}
+\label{figure:RMAPPacketUtilitySection_GenerateInterpret}
+\end{center}
+\end{figure}
+
+\begin{figure}[htb]
+\begin{center}
+\begin{minipage}[t]{0.45\hsize}
+\begin{center}
+\includegraphics[width=8cm]{figures/SpaceWireRMAPGUI/RMAPPacketUtilitySection_Log_Generate.png}
+\vspace{-2mm}
+\caption{Log message added when generating an RMAP packet. Note that "Log packet button" is checked. }
+\label{figure:RMAPPacketUtilitySection_Log_Generate}
+\end{center}
+\end{minipage}
+\hspace{0.05\hsize}
+\begin{minipage}[t]{0.45\hsize}
+\begin{center}
+\includegraphics[width=8cm]{figures/SpaceWireRMAPGUI/RMAPPacketUtilitySection_Log_Interpret.png}
+\vspace{-2mm}
+\caption{Log message added when interpreting an RMAP packet. Note that "Log packet button" is checked. }
+\label{figure:RMAPPacketUtilitySection_Log_Interpret}
+\end{center}
+\end{minipage}
+\end{center}
+\end{figure}
 
 
+\subsection{CRC error}
+The packet interpretation function reports a warning when it detects an invalid CRC in the header or the data as shown in Figures \ref{figure:RMAPPacketUtilitySection_Interpret_InvalidCRCs_01}, \ref{figure:RMAPPacketUtilitySection_Interpret_InvalidCRCs_02}, and \ref{figure:RMAPPacketUtilitySection_Interpret_InvalidCRCs_03}.
+A correct CRC value is automatically calculated and set to the CRC field in the left column. The value is also displayed in the log window.
 
+
+\begin{figure}[htb]
+\begin{center}
+\begin{minipage}[t]{0.45\hsize}
+\begin{center}
+\includegraphics[width=6cm]{figures/SpaceWireRMAPGUI/RMAPPacketUtilitySection_Interpret_InvalidCRCs_01.png}
+\vspace{-2mm}
+\caption{Sample packet with invalid header and data CRCs (shaded bytes).}
+\label{figure:RMAPPacketUtilitySection_Interpret_InvalidCRCs_01}
+\end{center}
+\end{minipage}
+\hspace{0.05\hsize}
+\begin{minipage}[t]{0.45\hsize}
+\begin{center}
+\includegraphics[width=6cm]{figures/SpaceWireRMAPGUI/RMAPPacketUtilitySection_Interpret_InvalidCRCs_02.png}
+\vspace{-2mm}
+\caption{Valid CRC values calculated in interpretation.}
+\label{figure:RMAPPacketUtilitySection_Interpret_InvalidCRCs_02}
+\end{center}
+\end{minipage}
+\end{center}
+\end{figure}
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=8cm]{figures/SpaceWireRMAPGUI/RMAPPacketUtilitySection_Interpret_InvalidCRCs_03.png}
+\vspace{-2mm}
+\caption{Log message shown when interpreting the same packet shown in Figure \ref{figure:RMAPPacketUtilitySection_Interpret_InvalidCRCs_01}. Note the orange message telling CRCs are invalid.}
+\label{figure:RMAPPacketUtilitySection_Interpret_InvalidCRCs_03}
+\end{center}
+\end{figure}
+
+
+\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\appendix
-\chapter{TCP/IP-SpaceWire packet transfer protocol}
-\chapter{Onboard CPU for configuration}
-SpaceWire-to-GigabitEther implements a V850 processor for configuration via TCP/IP. 
-\chapter{The SpaceWire/RMAP Library}
-
 \appendix
 \section{Format of the XML-like configuration file}
 RMAP Target Node information and memory object information can be stored in an XML-like configuration file.
