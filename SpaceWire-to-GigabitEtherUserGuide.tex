@@ -1,0 +1,92 @@
+\documentclass[a4paper,twoside,12pt]{book}
+
+\input{style/preamble}
+
+\title{\Huge{
+SpaceWire-to-GigabitEther\\
+and SpaceWire RMAP GUI}\\
+\Large{User Guide and Tutorial
+}}
+
+\author{
+{\Large
+Takayuki Yuasa
+}\\
+{\small Japan Aerospace Exploration Agency, Institute of Space and Astronautical Science}\\
+}
+
+\date{December, 2011}
+
+
+\begin{document}
+\maketitle
+
+\setcounter{page}{2}
+
+
+\chapter{Overview}
+\section{SpaceWire-to-GigabitEther}
+\section{SpaceWire RMAP GUI}
+\section{This is an open-source user guide}
+\section{Feedback}
+\section{Revision}
+
+\chapter{SpaceWire-to-GigabitEther}
+\section{Purpose}
+\subsection{Standalone version and AMC version}
+\subsection{Specification}
+\subsection{Dimensions}
+\subsection{Weight}
+\subsection{Power}
+\section{Hardware block diagram}
+\section{FPGA block diagram}
+\section{Hardware implementation of a TCP/IP stack}
+\section{Configuration of the internal SpaceWire router}
+\section{Physical and internal SpaceWire connections}
+
+\chapter{The internal SpaceWire Router}
+\section{Basic design}
+\section{Configurable items}
+\subsection{Default parameters}
+\subsection{Typical usages}
+\section{Router Configuration Port (Port0)}
+\section{Register Port (Port??)}
+\section{Internal loop connection}
+
+\chapter{Performance}
+\section{SpaceWire packet transfer}
+\section{RMAP data transfer}
+\section{Performance of the VHDL TCP/IP stack}
+
+\chapter{SpaceWire RMAP GUI}
+\section{Overview}
+This software is an open-source project.
+No warranty, and provided as is.
+\section{SpaceWire I/F control section}
+\section{SpaceWire-layer operation}
+\section{RMAP-layer operation}
+\section{Define RMAP target nodes using an XML file}
+\section{Define registers on RMAP target nodes using an XML file}
+\section{RMAP Packet Utility}
+\section{Scripting}
+
+\chapter{Tutorial}
+\section{Send/receive SpaceWire packets}
+\section{Read/write access to an RMAP target node}
+\section{Access the configuration port of the internal SpaceWire router}
+\subsection{Access the routing table}
+\subsection{Change link operating frequencies of SpaceWire ports}
+
+\appendix
+\chapter{TCP/IP-SpaceWire packet transfer protocol}
+\chapter{Onboard CPU for configuration}
+SpaceWire-to-GigabitEther implements a V850 processor for configuration via TCP/IP. 
+\chapter{The SpaceWire/RMAP Library}
+
+\section{Basic design}
+
+
+
+
+
+\end{document}
