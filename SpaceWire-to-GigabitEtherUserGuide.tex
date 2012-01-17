@@ -1,79 +1,109 @@
-\documentclass[a4paper,twoside,12pt]{book}
+\documentclass[a4paper,10pt]{article}
 
 \input{style/preamble}
 
 \title{\Huge{
-SpaceWire-to-GigabitEther\\
-and SpaceWire RMAP GUI}\\
-\Large{User Guide and Tutorial
-}}
+SpaceWire RMAP GUI}\\
+\Large{User Guide}}
 
 \author{
 {\Large
 Takayuki Yuasa
 }\\
 {\small Japan Aerospace Exploration Agency, Institute of Space and Astronautical Science}\\
+{\small yuasa \_at\_mark\_ astro.isas.jaxa.jp}\\
 }
 
-\date{December, 2011}
+\date{January 11, 2012}
 
+%\newcommand{\red}{\textcolor{red}}
+%\newcommand{\green}{\textcolor{green}}
+%\newcommand{\blue}{\textcolor{blue}}
+%\newcommand{\apricot}{\textcolor[rgb]{1,0,0.5}}
+
+\usepackage{listings}
+\usepackage{color}
+
+\lstset{%
+ language={XML},
+ backgroundcolor={\color[gray]{.97}},%
+ basicstyle={\small\ttfamily},%
+ identifierstyle={\small\ttfamily},%
+ commentstyle={\small\ttfamily\itshape},%
+ keywordstyle={\small\bfseries\ttfamily},%
+ ndkeywordstyle={\small},%
+ stringstyle={\small\ttfamily\apricot},
+ frame={tb},
+ breaklines=true,
+% columns=[l]{fullflexible},%
+ numbers=left,%
+ xrightmargin=5pt,%
+ xleftmargin=5pt,%
+% numberstyle={\scriptsize},%
+% stepnumber=1,
+ numbersep=5pt,%
+ lineskip=-0.5pt%
+}
 
 \begin{document}
 \maketitle
+\tableofcontents
 
-\setcounter{page}{2}
+\setcounter{page}{1}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Overview}
+\subsection{SpaceWire-to-GigabitEther}
+\subsection{SpaceWire RMAP GUI}
+\subsection{This is an open-source user guide}
+\subsection{Feedback}
+\subsection{Revision}
 
-\chapter{Overview}
 \section{SpaceWire-to-GigabitEther}
-\section{SpaceWire RMAP GUI}
-\section{This is an open-source user guide}
-\section{Feedback}
-\section{Revision}
-
-\chapter{SpaceWire-to-GigabitEther}
-\section{Purpose}
+\subsection{Purpose}
 \subsection{Standalone version and AMC version}
 \subsection{Specification}
 \subsection{Dimensions}
 \subsection{Weight}
 \subsection{Power}
-\section{Hardware block diagram}
-\section{FPGA block diagram}
-\section{Hardware implementation of a TCP/IP stack}
-\section{Configuration of the internal SpaceWire router}
-\section{Physical and internal SpaceWire connections}
 
-\chapter{The internal SpaceWire Router}
-\section{Basic design}
-\section{Configurable items}
+\subsection{Hardware block diagram}
+\subsection{FPGA block diagram}
+\subsection{Hardware implementation of a TCP/IP stack}
+\subsection{Configuration of the internal SpaceWire router}
+\subsection{Physical and internal SpaceWire connections}
+
+\section{The internal SpaceWire Router}
+\subsection{Basic design}
+\subsection{Configurable items}
 \subsection{Default parameters}
 \subsection{Typical usages}
-\section{Router Configuration Port (Port0)}
-\section{Register Port (Port??)}
-\section{Internal loop connection}
+\subsection{Router Configuration Port (Port0)}
+\subsection{Register Port (Port??)}
+\subsection{Internal loop connection}
 
-\chapter{Performance}
-\section{SpaceWire packet transfer}
-\section{RMAP data transfer}
-\section{Performance of the VHDL TCP/IP stack}
+\section{Performance}
+\subsection{SpaceWire packet transfer}
+\subsection{RMAP data transfer}
+\subsection{Performance of the VHDL TCP/IP stack}
 
-\chapter{SpaceWire RMAP GUI}
-\section{Overview}
+\section{SpaceWire RMAP GUI}
+\subsection{Overview}
 This software is an open-source project.
 No warranty, and provided as is.
-\section{SpaceWire I/F control section}
-\section{SpaceWire-layer operation}
-\section{RMAP-layer operation}
-\section{Define RMAP target nodes using an XML file}
-\section{Define registers on RMAP target nodes using an XML file}
-\section{RMAP Packet Utility}
-\section{Scripting}
+\subsection{SpaceWire I/F control section}
+\subsection{SpaceWire-layer operation}
+\subsection{RMAP-layer operation}
+\subsection{Define RMAP target nodes using an XML file}
+\subsection{Define registers on RMAP target nodes using an XML file}
+\subsection{RMAP Packet Utility}
+\subsection{Scripting}
 
-\chapter{Tutorial}
-\section{Send/receive SpaceWire packets}
-\section{Read/write access to an RMAP target node}
-\section{Access the configuration port of the internal SpaceWire router}
+\section{Tutorial}
+\subsection{Send/receive SpaceWire packets}
+\subsection{Read/write access to an RMAP target node}
+\subsection{Access the configuration port of the internal SpaceWire router}
 \subsection{Access the routing table}
 \subsection{Change link operating frequencies of SpaceWire ports}
 
@@ -82,11 +112,5 @@ No warranty, and provided as is.
 \chapter{Onboard CPU for configuration}
 SpaceWire-to-GigabitEther implements a V850 processor for configuration via TCP/IP. 
 \chapter{The SpaceWire/RMAP Library}
-
-\section{Basic design}
-
-
-
-
 
 \end{document}

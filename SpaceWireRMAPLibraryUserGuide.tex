@@ -11,6 +11,7 @@ SpaceWire RMAP Library v2}\\
 Takayuki Yuasa
 }\\
 {\small Japan Aerospace Exploration Agency, Institute of Space and Astronautical Science}\\
+{\small yuasa \_at\_mark\_ astro.isas.jaxa.jp}
 }
 
 \date{January 10,  2012}
@@ -26,20 +27,20 @@ Takayuki Yuasa
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Overview of SpaceWire RMAP Library}\label{section:overview}
-SpaceWire RMAP Library is an open-source C++ class library for developments and tests of SpaceWire\footnote{ECSS-E-ST-50-12C.} networks and RMAP\footnote{Remote Memory Access Protocol. ECSS-E-ST-50-52C.} transactions. The library is highly modularized, and provides easy-to-use access to SpaceWire and RMAP interfaces.
+SpaceWire RMAP Library is an open-source C++ class library for developments and tests of SpaceWire\footnote{ECSS-E-ST-50-12C.} networks and data transfer over RMAP\footnote{Remote Memory Access Protocol. ECSS-E-ST-50-52C.}. The library is highly modularized, and provides easy-to-use access to SpaceWire interfaces and a software RMAP stack.
 
 The SpaceWireIF class abstracts a physical SpaceWire interface, and an implementation class for SpaceWire-over-TCP interface is implemented as SpaceWireIFOverTCP. RMAP initiator and target functions can be multiplexed on a single SpaceWire interface, and the RMAPEngine class acts as a central engine for RMAP-related activities. RMAP target node information such as a target logical address, a target SpaceWire address, key, and so on, are managed via XML-like configuration files making it easier to handle multiple target nodes in a large SpaceWire network.
 
-SpaceWire RMAP Library can be used on Mac OS X and Linux (and probably Windows with the Cygwin environment). 
+SpaceWire RMAP Library can be used on Mac OS X and Linux (probably with slight modification), and perhaps Windows with the Cygwin environment. If anyone ports the library to Windows, feedback the resulting source tree.
 SpaceWire RMAP Library uses libraries listed below:
 \begin{itemize}
   \setlength{\parskip}{0cm}
   \setlength{\itemsep}{0cm}
-\item CxxUtilities\footnote{\url{https://github.com/sakuraisoki/XMLUtilities/}}
-\item XMLUtility by Soki Sakurai from The University of Tokyo\footnote{\url{https://github.com/sakuraisoki/XMLUtilities/}}
+\item CxxUtilities\footnote{\url{https://github.com/yuasatakayuki/CxxUtilities}}
+\item XMLUtilities by Soki Sakurai from The University of Tokyo\footnote{\url{https://github.com/sakuraisoki/XMLUtilities/}}
 \item xerces-c++ by the Apache project\footnote{\url{http://xerces.apache.org/xerces-c/}\label{url:xerces}}
 \end{itemize}
-Among these, CxxUtilities and XMLUtility are header-only libraries, and and xerces-c++ should be built before using SpaceWireRMAPLibrary.
+Among these, CxxUtilities and XMLUtilities are header-only libraries, and and xerces-c++ should be built before using SpaceWireRMAPLibrary.
 
 Note that the software is distributed for free assuming that this is useful for some users without any warranty or official support, and developers are not responsible for any damages caused by this software.
 
@@ -54,6 +55,8 @@ The SpaceWire RMAP Library v1 code is still contained in the v2 folder so as to 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{About this user guide}
 The user guide is provided {\it as is} expecting that this is somewhat useful for users to use the software. This is a voluntary mission, and therefore, kind help is always welcome. It is greatly appreciated to make contributions by feed-backing comments, revising documents, and so on.
+
+One of the Japanese authors of this document, Takayuki Yuasa, is sorry for his limited English capability, and will be very happy if anyone can help to improve it. Comments on grammar, vocabularies, phrasing, and composition are welcome!
 
 \subsection{Latest information and feedback}
 Latest information on SpaceWire RMAP Library can be found at the open-source SpaceWire project website \footnote{The open-source SpaceWire project: \url{https://galaxy.astro.isas.jaxa.jp/~yuasa/SpaceWire}\label{url:supportpage}}.
@@ -101,9 +104,9 @@ Set "XERCESDIR" in the shell initialization file, e.g.
 export XERCESDIR=/Users/yuasa/work/install/xerces-c-3.1.1
 \end{lstlisting}
 
-Although CxxUtilities and XMLUtiity are also required by SpaceWire RMAP Library, a release version of SpaceWire RMAP Library includes these libraries for users' convenience; in SpaceWireRMAPLibrary/externalLibraries/.
+Although CxxUtilities and XMLUtilities are also required by SpaceWire RMAP Library, a release version of SpaceWire RMAP Library includes these libraries for users' convenience; in SpaceWireRMAPLibrary/externalLibraries/.
 Therefore, by default, environmental variables for these libraries are automatically set in an example Makefile, and users do not need to redefine them.
-If a user wants to use their own installation(s) of CxxUtilities and/or XMLUtilities, set "CXXUTILITIES\_PATH" and "XMLUTILITY\_PATH" reflecting his/her environment.
+If a user wants to use their own installation(s) of CxxUtilities and/or XMLUtilities, set "CXXUTILITIES\_PATH" and "XMLUTILITIES\_PATH" reflecting his/her environment.
 
 Table \ref{table:environmentalVariables} lists environmental variables used by SpaceWire RMAP Library Makefile. List \ref{source:sample_Makefile} presents an example Makefile which can be used to compile a user application with SpaceWire RMAP Library and related libraries.
 
@@ -117,7 +120,7 @@ Table \ref{table:environmentalVariables} lists environmental variables used by S
 SPACEWIRERMAPLIBRARY\_PATH & path to SpaceWire RMAP Library & /Users/yuasa/workspace/SpaceWireRMAPLibrary \\
 XERCESDIR & path to xerces-c++ installation & /Users/yuasa/workspace/xerces-c-3.1.1 \\
 CXXUTILITIES\_PATH (optional) & path to CxxUtilities & /Users/yuasa/workspace/CxxUtilities \\
-XMLUTILITY\_PATH (optional)& path to XMLUtility & /Users/yuasa/workspace/XMLUtility  \\
+XMLUTILITIES\_PATH (optional)& path to XMLUtilities & /Users/yuasa/workspace/XMLUtilities  \\
 \hline
 \end{tabular}
 \end{center}
@@ -161,13 +164,13 @@ ifndef $(CXXUTILITIES_PATH)
 CXXUTILITIES_PATH = $(SPACEWIRERMAPLIBRARY_PATH)/externalLibraries/CxxUtilities
 endif
 
-#Check XMLUtility
-ifndef $(XMLUTILITY_PATH)
-XMLUTILITY_PATH = $(SPACEWIRERMAPLIBRARY_PATH)/externalLibraries/XMLUtility
+#Check XMLUtilities
+ifndef $(XMLUTILITIES_PATH)
+XMLUTILITIES_PATH = $(SPACEWIRERMAPLIBRARY_PATH)/externalLibraries/XMLUtilities
 endif
 
 #Set compiler/linker flags
-CXXFLAGS = -I$(SPACEWIRERMAPLIBRARY_PATH)/includes -I$(CXXUTILITIES_PATH)/includes -I$(XMLUTILITY_PATH) -I/$(XERCESDIR)/include
+CXXFLAGS = -I$(SPACEWIRERMAPLIBRARY_PATH)/includes -I$(CXXUTILITIES_PATH)/includes -I$(XMLUTILITIES_PATH) -I/$(XERCESDIR)/include
 LDFLAGS = -L/$(XERCESDIR)/lib -lxerces-c
 
 
@@ -193,7 +196,7 @@ clean :
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Overall structure of SpaceWire RMAP Library}
 Figure \ref{figure:LibraryStructure} presents a structure diagram of SpaceWire RMAP Library.
-The SpaceWireIF abstracts real SpaceWire interfaces providing standardized ways of sending/receiving packets and emitting time codes. Upon the SpaceWire layer, the RMAP layer is implemented. The both layers are contained in a flat source tree in the includes folder of SpaceWireRMAPLibrary/.
+The SpaceWireIF abstracts real SpaceWire interfaces providing standardized ways of sending/receiving packets and emitting time codes. Upon the SpaceWire layer, the software RMAP stack is implemented. The both layers are contained in a flat source tree in the includes folder of SpaceWireRMAPLibrary/.
 
 \begin{figure}[htb]
 \center
@@ -206,9 +209,10 @@ The SpaceWireIF abstracts real SpaceWire interfaces providing standardized ways 
 SpaceWire RMAP Library consists of several folders as described below.
 \begin{description}
 \item[includes] contains header files of SpaceWire RMAP Library. In a user-application Makefile, add a path to this folder in the compiler flag.
-\item[externalLibraries] contains CxxUtilities and XMLUtility source trees for those who do not have their own installation of these libraries. The attached example Makefile uses these bundled libraries by default.
+\item[externalLibraries] contains CxxUtilities and XMLUtilities source trees for those who do not have their own installation of these libraries. The attached example Makefile uses these bundled libraries by default.
 \item[exampleMakefile] contains an example Makefile for a user application which uses SpaceWire RMAP Library. Necessary compiler and linker flags are also described in the file.
 \item[sources] contains free-gift programs built with SpaceWire RMAP Library, tutorial source code, and test codes.
+\item[classic] contains obsolete (not maintained) SpaceWire RMAP Library v1 source tree.
 \end{description}
 
 \subsection{Files}
