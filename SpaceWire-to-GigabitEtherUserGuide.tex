@@ -1,4 +1,4 @@
-\documentclass[a4paper,10pt]{article}
+ \documentclass[a4paper,10pt]{article}
 
 \input{style/preamble}
 
@@ -55,8 +55,54 @@ Takayuki Yuasa
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Overview}
 \subsection{SpaceWire-to-GigabitEther}
+SpaceWire-to-GigabitEther is an interface to SpaceWire networks for PC software via GigabitEthernet. Users can send/receive SpaceWire packets from/to a user program running on an ordinary PC to/from a SpaceWire node or router connected to the device. The class library written in C++ is also available for user programs which run on the PC. Using the library, users can perform Remote Memory Access Protocol (RMAP) to RMAP Target nodes connected to the converter through the SpaceWire network. This device is not flight qualified, but originally intended for SpaceWire/RMAP-based data acquisition system of scientific experiments and ground tests of flight modules which use SpaceWire interfaces.
+
+Note that there are two types of SpaceWire-to-GigabitEther, one is an open-source version (FPGA IP and software are open), and the other is a product version which can be purchased from Shimafuji Electric.
+
+\begin{itemize}
+\item Open-source SpaceWire-to-GigabitEther utilizes the ZestET1 board by OrangeTree. SpaceWire Open IP (by Shimafuji Electric and Osaka University) and Host I/F are implemented on the UserFPGA of the board. This board bridges one TCP/IP connection to one external SpaceWire port.
+\item Shimafuji's SpaceWire-to-GigabitEther provides very similar functionality as what the open-source version implements, but with an additional internal SpaceWire router and 4 micro-Dsub (MDM) external SpaceWire ports. The Shimafuji SpaceWire-to-GigabitEther accepts higher Tx frequencies (up to 200MHz) than the open-source version does (~130MHz).
+\end{itemize}
+
+The both SpaceWire-to-GigabitEther operates as a TCP server which listens/accepts a connection from a client PC on which user program runs. When disconnected, the converter goes back to the listening state and waits for a new connection. The Shimafuji SpaceWire-to-GigabitEther accepts two TCP/IP connections (identified by TCP/IP port numbers) and bridges them to separate SpaceWire ports (both connected to the internal SpaceWire router; see User Guide for details), while one TCP/IP-SpaceWire bridge is available in the open-source SpaceWire-to-GigabitEther.
+Takayuki Yuasa currently concentrates on test/developments on the ShimafujiÅfs SpaceWire-to-GigabitEther, and no big update for the open-source version will be expected due to limited man power.
+
+\begin{figure}[htb]
+\begin{center}
+\begin{minipage}{0.45\hsize}
+\begin{center}
+\includegraphics[width=8cm]{figures/SpaceWire-to-GigabitEther/SpaceWire-to-GigabitEther_opensource_version.jpg}
+\caption{Open-source SpaceWire-to-GigabitEther.}
+\label{figure:openSourceSpWGbE}
+\end{center}
+\end{minipage}
+\hspace{0.05\hsize}
+\begin{minipage}{0.45\hsize}
+\begin{center}
+\includegraphics[width=8cm]{figures/SpaceWire-to-GigabitEther/SpaceWire-to-GigabitEther-Shimafuji-MDM4version.jpg}
+\caption{Shimafuji Electric's SpaceWire-to-GigabitEther with 4 MDM SpaceWire ports.}
+\label{figure:shimafujiSpWGbE}
+\end{center}
+\end{minipage}
+\end{center}
+\end{figure}
+
+
 \subsection{SpaceWire RMAP GUI}
+The GUI software SpaceWire RMAP GUI is available from the open-source SpaceWire project\footnote{The open-source SpaceWire project: \url{https://galaxy.astro.isas.jaxa.jp/~yuasa/SpaceWire}\label{url:supportpage}} on Mac.
+Users can send/receive SpaceWire packets, and perform RMAP read/write transactions for debugging SpaceWire/RMAP devices.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=12cm]{figures/SpaceWireRMAPGUI/Screenshot_all.png}
+\caption{Screenshot of SpaceWire RMAP GUI.}
+\label{figure:SpaceWireRMAPGUI}
+\end{center}
+\end{figure}
+
+
 \subsection{This is an open-source user guide}
+
 \subsection{Feedback}
 \subsection{Revision}
 

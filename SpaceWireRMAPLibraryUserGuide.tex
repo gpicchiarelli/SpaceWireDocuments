@@ -88,7 +88,7 @@ SpaceWire RMAP Library is distributed as a zip archive at the open-source SpaceW
 Git repository can be cloned from the github page\footnote{\url{https://github.com/yuasatakayuki/SpaceWireRMAPLibrary}}. 
 Since SpaceWire RMAP Library is a header-only library, installation is simple; unzip the archive, and then move SpaceWireRMAPLibrary folder to wherever you like. Possible locations are for example /Users/{\it username}/Documents/workspace/SpaceWireRMAPLibrary, /Users/{\it username}/install/SpaceWireRMAPLibrary, or /usr/local/SpaceWireRMAPLibrary.
 
-After installing the library, an environmental variable ÅgSPACEWIRERMAPLIBRARY\_PATHÅh should be set to point the installed folder to simplify Makefiles used when compiling user applications. In the shell initialization file (.zshrc for zsh, and .bashrc for bash), add a line below:
+After installing the library, an environment variable ÅgSPACEWIRERMAPLIBRARY\_PATHÅh should be set to point the installed folder to simplify Makefiles used when compiling user applications. In the shell initialization file (.zshrc for zsh, and .bashrc for bash), add a line below:
 \lstset{language=C++}
 \begin{lstlisting}[label=source:sample_for_ssdtp2, caption=Sample code for filling the size and the data sections.]
 export SPACEWIRERMAPLIBRARY_PATH=/Users/yuasa/workspace/SpaceWireRMAPLibrary
@@ -97,7 +97,7 @@ Change the path to match your install location.
 
 The library uses several other libraries as mentioned in \S\ref{section:overview}.
 Install xerces-c++ by downloading its source archive from the project page$^\mathrm{\ref{url:xerces}}$.
-An example Makefile distributed with SpaceWire RMAP Library uses an environmental variable "XERCESDIR".
+An example Makefile distributed with SpaceWire RMAP Library uses an environment variable "XERCESDIR".
 Set "XERCESDIR" in the shell initialization file, e.g.
 \lstset{language=C++}
 \begin{lstlisting}[label=source:sample_for_ssdtp2, caption=Sample code for filling the size and the data sections.]
@@ -105,14 +105,14 @@ export XERCESDIR=/Users/yuasa/work/install/xerces-c-3.1.1
 \end{lstlisting}
 
 Although CxxUtilities and XMLUtilities are also required by SpaceWire RMAP Library, a release version of SpaceWire RMAP Library includes these libraries for users' convenience; in SpaceWireRMAPLibrary/externalLibraries/.
-Therefore, by default, environmental variables for these libraries are automatically set in an example Makefile, and users do not need to redefine them.
+Therefore, by default, environment variables for these libraries are automatically set in an example Makefile, and users do not need to redefine them.
 If a user wants to use their own installation(s) of CxxUtilities and/or XMLUtilities, set "CXXUTILITIES\_PATH" and "XMLUTILITIES\_PATH" reflecting his/her environment.
 
-Table \ref{table:environmentalVariables} lists environmental variables used by SpaceWire RMAP Library Makefile. List \ref{source:sample_Makefile} presents an example Makefile which can be used to compile a user application with SpaceWire RMAP Library and related libraries.
+Table \ref{table:environmentalVariables} lists environment variables used by SpaceWire RMAP Library Makefile. List \ref{source:sample_Makefile} presents an example Makefile which can be used to compile a user application with SpaceWire RMAP Library and related libraries.
 
 \begin{table}[htb]
 \begin{center}
-\caption{List of environmental variables used in SpaceWire RMAP Library Makefile.}\label{table:environmentalVariables}
+\caption{List of environment variables used in SpaceWire RMAP Library Makefile.}\label{table:environmentalVariables}
 \footnotesize
 \begin{tabular}{lll}
 \hline
@@ -241,7 +241,7 @@ In ground experiments using SpaceWire and RMAP, these types of simple, standalon
 \section{Tutorial}\label{section:tutorial}
 In the following subsections, a short walk-through of SpaceWire RMAP Library is described assuming that RMAP initiator is the most interested function for many users. Detailed usages and application specific topics related to SpaceWire and RMAP functions are presented in \S\ref{section:detailedUsages}.
 
-For SpaceWire- and RMAP-layer tutorials, refer to tutorial source codes sources/tutorial\_SpaceWire.cc and sources/tutorial\_RMAP.cc. To compile these files, set the environmental variables (\S\ref{section:downloadAndSettings}), and then execute make in the SpaceWireRMAPLibrary/source/ folder.
+For SpaceWire- and RMAP-layer tutorials, refer to tutorial source codes sources/tutorial\_SpaceWire.cc and sources/tutorial\_RMAP.cc. To compile these files, set the environment variables (\S\ref{section:downloadAndSettings}), and then execute make in the SpaceWireRMAPLibrary/source/ folder.
 
 \subsection{Use SpaceWire RMAP Library}
 Include "SpaceWire.hh" and "RMAP.hh" for loading all necessary header files related to the SpaceWire and the RMAP layers.
